@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>После июня</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101114;
+      --paper: #f4eee4;
+      --ink: #181511;
+      --muted: #c9bda9;
+      --red: #9f2631;
+      --wine: #5f1424;
+      --gold: #d8a85d;
+      --blue: #182437;
+      --line: rgba(255, 255, 255, 0.16);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(159, 38, 49, 0.28), transparent 34%),
+        linear-gradient(145deg, #101114 0%, #1b1620 42%, #111824 100%);
+      color: #f7efe6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.08fr);
+      align-items: stretch;
+      gap: clamp(20px, 4vw, 54px);
+      padding: clamp(18px, 4vw, 54px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: clamp(10px, 4vw, 46px);
+    }
+
+    .label {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(216, 168, 93, 0.44);
+      border-radius: 999px;
+      color: #f7dba3;
+      background: rgba(216, 168, 93, 0.08);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 18px 0 18px;
+      max-width: 740px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 9vw, 106px);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 660px;
+      margin: 0;
+      color: #e7d8c4;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.55;
+    }
+
+    .photo-wrap {
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46);
+      background: #24191a;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 44px clamp(18px, 4vw, 38px) 64px;
+    }
+
+    .note {
+      margin: 0 0 34px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--gold);
+      color: #dfd3c4;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 0 8px 8px 0;
+      line-height: 1.55;
+    }
+
+    .chapters {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: clamp(20px, 4vw, 44px);
+      align-items: start;
+    }
+
+    .timeline {
+      position: sticky;
+      top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .timeline h2,
+    .story h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .timeline a {
+      display: block;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f1e4d3;
+      text-decoration: none;
+    }
+
+    .timeline a:hover {
+      color: #ffd58a;
+    }
+
+    .story {
+      display: grid;
+      gap: 18px;
+    }
+
+    .chapter {
+      padding: clamp(18px, 3vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .chapter h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1;
+      color: #fff5e7;
+    }
+
+    .chapter p {
+      margin: 0 0 16px;
+      color: #e6dacb;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .chapter p:last-child {
+      margin-bottom: 0;
+    }
+
+    .quote {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.2;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .fact {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .fact b {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffd58a;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ending {
+      margin-top: 32px;
+      padding: clamp(22px, 4vw, 38px);
+      border-radius: 8px;
+      color: var(--paper);
+      background:
+        linear-gradient(135deg, rgba(159, 38, 49, 0.94), rgba(24, 36, 55, 0.96)),
+        var(--wine);
+    }
+
+    .ending h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1;
+    }
+
+    .ending p {
+      max-width: 820px;
+      margin: 0;
+      color: #f4e8d8;
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .chapters {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .photo-wrap {
+        min-height: 380px;
+      }
+
+      .timeline {
+        position: static;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 16px;
+      }
+
+      main {
+        padding-inline: 16px;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter p {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <section class="hero-copy">
+      <span class="label">вымышленная история</span>
+      <h1>После июня</h1>
+      <p class="lead">История о парне с фотографии, который однажды стоял у красной машины и делал вид, что просто смотрит в сторону, хотя на самом деле пытался понять, как жить дальше после Киры и проваленных ЕГЭ.</p>
+    </section>
+    <figure class="photo-wrap">
+      <img src="file:///C:/Users/home/Downloads/photo_5366077112961407100_y.jpg" alt="Парень у красной машины вечером">
+    </figure>
+  </header>
+
+  <main>
+    <p class="note">Все события и имена на этой странице являются художественным вымыслом. Фотография используется как визуальная основа для придуманного рассказа.</p>
+
+    <section class="chapters">
+      <nav class="timeline" aria-label="Главы истории">
+        <h2>Главы</h2>
+        <a href="#chapter-1">1. Вечер у машины</a>
+        <a href="#chapter-2">2. Кира</a>
+        <a href="#chapter-3">3. ЕГЭ</a>
+        <a href="#chapter-4">4. После</a>
+      </nav>
+
+      <div class="story">
+        <article class="chapter" id="chapter-1">
+          <h2>Вечер у машины</h2>
+          <p>Его звали Сергей Койнаш. В тот вечер он стоял возле красной машины у пустой парковки и старательно делал вид, что ждет друзей. На самом деле он уже двадцать минут смотрел в темное стекло двери, как в зеркало, и пытался решить, выглядит ли он человеком, у которого все под контролем.</p>
+          <p>Телефон в руке молчал. На экране оставался последний диалог с Кирой: короткие фразы, слишком аккуратные точки, ни одного смайлика. Сергей Койнаш перечитал его столько раз, что начал помнить не слова, а расстояния между ними.</p>
+          <div class="facts">
+            <div class="fact"><b>Место</b>вечерняя парковка</div>
+            <div class="fact"><b>Настроение</b>держится, но еле-еле</div>
+            <div class="fact"><b>Главный страх</b>признать, что все изменилось</div>
+          </div>
+        </article>
+
+        <article class="chapter" id="chapter-2">
+          <h2>Кира</h2>
+          <p>Кира появилась в его жизни в начале одиннадцатого класса. Она умела смеяться так, будто в мире не существовало расписаний, дедлайнов и репетиторов. Сергей Койнаш рядом с ней становился смелее: писал длинные сообщения, спорил о музыке, обещал летом уехать с ней к морю.</p>
+          <p>Но ближе к экзаменам разговоры стали суше. Кира готовилась по плану, отмечала темы маркерами и выключала телефон на три часа подряд. Сергей Койнаш же все чаще говорил: "Да я потом нагоню". Потом наступило слишком быстро.</p>
+          <div class="quote">"Я не ухожу из-за экзаменов. Я ухожу, потому что ты сам перестал за себя держаться."</div>
+          <p>Эта фраза ударила сильнее любой двойки. Не потому что была жестокой, а потому что Сергей Койнаш понял: Кира сказала именно то, от чего он сам прятался.</p>
+        </article>
+
+        <article class="chapter" id="chapter-3">
+          <h2>ЕГЭ</h2>
+          <p>Первый экзамен он написал на чистом упрямстве. Второй - на кофе и панике. К третьему стало ясно, что чудо не прилетит в аудиторию и не заполнит бланк за него. Формулы путались, аргументы для сочинения расползались, а часы на стене шли нагло быстро.</p>
+          <p>Когда пришли результаты, Сергей Койнаш долго не открывал страницу. Потом открыл, закрыл, снова открыл. Баллов не хватало. Не хватало до вуза, до плана, до красивой версии себя, которую он показывал Кире, друзьям и родителям.</p>
+          <p>Самым неприятным оказалось не то, что он не сдал как хотел. Самым неприятным было то, что теперь нельзя было винить случайность. Перед ним лежало честное зеркало: он надеялся на удачу там, где нужна была работа.</p>
+        </article>
+
+        <article class="chapter" id="chapter-4">
+          <h2>После</h2>
+          <p>На следующий день Сергей Койнаш снова пришел на ту же парковку. Машина блестела после дождя, фонари отражались в капоте, а город будто ничего не знал о его личной катастрофе. Он достал телефон, открыл чат с Кирой и впервые не стал писать "вернись".</p>
+          <p>Вместо этого он создал заметку: "Что делать дальше". Там было всего три пункта: пересдать, найти работу на лето, перестать обещать то, что не собираешься делать. Список выглядел смешно коротким для новой жизни, но это был первый честный список за долгое время.</p>
+          <p>Кира не стала злодейкой в его памяти, а ЕГЭ не стало концом света. Просто однажды июнь забрал у Сергея Койнаша иллюзию, что взрослость можно отложить. И, как ни странно, именно после этого у него появился шанс стать собой.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ending">
+      <h2>Не финал</h2>
+      <p>Через год Сергей Койнаш пересдал экзамены лучше, чем ожидал, но главным результатом стали не баллы. Он научился не строить образ, а строить привычки. Иногда он все еще вспоминал Киру, особенно в июньские вечера, но уже без просьбы вернуть прошлое. Теперь это была не рана, а отметка на карте: место, где он наконец начал движение.</p>
+    </section>
+  </main>
+</body>
+</html>
